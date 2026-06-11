@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>الأذكار</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+background:#000;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+font-family:sans-serif;
+}
+
+video{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay{
+position:absolute;
+top:20px;
+left:20px;
+background:rgba(0,0,0,0.45);
+color:#fff;
+padding:10px 16px;
+border-radius:14px;
+font-size:14px;
+backdrop-filter:blur(8px);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay" id="periodText"></div>
+
+<video id="videoPlayer"
+autoplay
+muted
+playsinline
+controls>
+</video>
+
+<script>
+
+const morningVideo = "morning.mp4";
+const eveningVideo = "evening.mp4";
+
+const now = new Date();
+const hour = now.getHours();
+
+const player = document.getElementById("videoPlayer");
+const text = document.getElementById("periodText");
+
+if(hour < 12){
+
+player.src = morningVideo;
+text.innerHTML = "☀️ أذكار الصباح";
+
+}else{
+
+player.src = eveningVideo;
+text.innerHTML = "🌙 أذكار المساء";
+
+}
+
+player.load();
+
+player.play().catch(() => {
+console.log("Autoplay blocked");
+});
+
+</script>
+
+</body>
+</html>
